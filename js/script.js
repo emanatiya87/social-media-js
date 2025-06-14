@@ -7,13 +7,16 @@ import { setupUI } from "./uiSetup.js";
 import { showAlert } from "./alert.js";
 // to setup UI at start relative to exist user or not
 setupUI();
+getPosts();
 // fetch posts from API
-axios
-  .get(`https://tarmeezacademy.com/api/v1/posts?limit=20`)
-  .then((data) => {
-    displayPosts(data.data.data);
-  })
-  .catch((error) => console.error(error));
+function getPosts() {
+  axios
+    .get(`https://tarmeezacademy.com/api/v1/posts?limit=20`)
+    .then((data) => {
+      displayPosts(data.data.data);
+    })
+    .catch((error) => console.error(error));
+}
 
 //   function to display data of posts in cards
 function displayPosts(data) {
@@ -64,12 +67,10 @@ addPostForm.onsubmit = function (e) {
     })
     .then((res) => {
       showAlert("post added successfully", "success");
+      getPosts();
     })
     .catch((error) => {
       console.log(error);
-      showAlert(
-        "An error Occoured Please try again to upload the post",
-        "danger"
-      );
+      showAlert(error.response.data.message, "danger");
     });
 };
