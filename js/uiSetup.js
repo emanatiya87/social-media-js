@@ -2,7 +2,7 @@ let logoutBox = document.getElementById("logoutBox");
 let logoutBoxBody = document.getElementById("logoutBoxBody");
 let loginBox = document.getElementById("loginBox");
 let addPostBtn = document.getElementById("addPostBtn");
-
+let addPostCardUserData = document.getElementById("addPostCardUserData");
 // function to appear user data after login and remove it when log out
 function setupUI() {
   if (localStorage.getItem("currentUserData")) {
@@ -18,6 +18,20 @@ function setupUI() {
                  
                 />
                 <h5 class="px-3">${data.name}</h5>       
+`;
+    addPostCardUserData.innerHTML = `
+              <img
+                src="${data.profile_image}"
+                alt="prodile Pic"
+                class="smallProfilePic rounded-circle border"
+              />
+              <div
+                data-bs-toggle="modal"
+                data-bs-target="#addPostModal"
+                class="border col-10 rounded-5 px-2 text-secondary bg-secondary-subtle d-flex align-items-center"
+              >
+                <p class="m-0">What's on your Mind ,${data.name} ?</p>
+              </div>
 `;
     addPostBtn.style.display = "block";
   } else {
