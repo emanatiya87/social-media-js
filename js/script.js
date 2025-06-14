@@ -31,7 +31,10 @@ function displayPosts(data) {
                 alt="profile pic"
                 class="img-thumbnail rounded-circle border me-2 smallProfilePic"
               />
-              <h5>@${post.author.username}</h5>
+              <div>
+                <h5 class="m-0">${post.author.name}</h5>
+                <p class="text-secondary m-0">@${post.author.username}</h5>
+              </div>
             </div>
             <div class="card-body">
               <img src="${post.image}" alt="" class="w-100" height="300" />
