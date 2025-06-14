@@ -1,6 +1,12 @@
 body {
   background-color: #ebeff5;
 }
+/* add post  */
+.IconeBox:hover {
+  background-color: #ececec;
+  transition: 0.5s;
+  cursor: pointer;
+}
 /* posts */
 .card {
   border: none;
@@ -8,10 +14,4 @@ body {
 .smallProfilePic {
   width: 50px;
   height: 50px;
-}
-#logoutBox {
-  display: none;
-}
-#addPostBtn {
-  display: none;
 }
