@@ -22,7 +22,7 @@ loginForm.addEventListener("submit", function (e) {
     .then((res) => {
       localStorage.setItem("currentUserData", JSON.stringify(res.data.user));
       localStorage.setItem("token", JSON.stringify(res.data.token));
-      showAlert("you loged in successfully", "success");
+      showAlert("you logged in successfully", "success");
       setupUI();
     })
     .catch((error) => {
@@ -33,7 +33,7 @@ loginForm.addEventListener("submit", function (e) {
 logout.addEventListener("click", function () {
   localStorage.removeItem("currentUserData");
   localStorage.removeItem("token");
-  showAlert("you logedout successfully", "success");
+  showAlert("you logged out successfully", "success");
   setupUI();
 });
 // Register form
