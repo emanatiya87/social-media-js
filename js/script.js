@@ -21,7 +21,7 @@ function displayPosts(data) {
   data.forEach((post) => {
     innerPostText += `
         <div class="row mb-3 justify-content-center">
-          <div class="card col-lg-7 col-md-9 shadow">
+          <div class="card col-lg-6 col-md-8 shadow">
             <div class="card-header d-flex align-items-center">
               <img
                 src="${post.author.profile_image}"
