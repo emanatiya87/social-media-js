@@ -30,7 +30,7 @@ function displayPosts(data) {
                 src="${
                   typeof post.author.profile_image == "string"
                     ? post.author.profile_image
-                    : "../images/face.jpg"
+                    : "images/face.jpg"
                 }"
                 alt="profile pic"
                 class="img-thumbnail rounded-circle border me-2 smallProfilePic"

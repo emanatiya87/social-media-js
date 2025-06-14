@@ -15,7 +15,7 @@ function setupUI() {
                   src="${
                     typeof data.profile_image == "string"
                       ? data.profile_image
-                      : "../images/face.jpg"
+                      : "images/face.jpg"
                   }"
                   class=" rounded-circle border smallProfilePic"
                   alt="profile pic"
@@ -28,7 +28,7 @@ function setupUI() {
                 src="${
                   typeof data.profile_image == "string"
                     ? data.profile_image
-                    : "../images/face.jpg"
+                    : "images/face.jpg"
                 }"
                 alt="prodile Pic"
                 class="smallProfilePic rounded-circle border"
