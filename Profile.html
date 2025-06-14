@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>profile</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <header class="container">
+      <div class="row">
+        <nav class="navbar navbar-expand-md bg-body-tertiary">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Logo</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarScroll"
+              aria-controls="navbarScroll"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+              <ul
+                class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
+                style="--bs-scroll-height: 100px"
+              >
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="index.html"
+                    >Home</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="Profile.html">Profile</a>
+                </li>
+              </ul>
+              <!-- display login box when log out and the opposite -->
+              <div class="d-none align-items-center">
+                <div class="imgBox">
+                  <img src="images/1.jpg" class="img-fluid" alt="profile pic" />
+                </div>
+                <h5 class="px-3">name</h5>
+                <button id="logout" class="btn btn-danger">
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  Logout
+                </button>
+              </div>
+              <div class="d-md-flex align-items-center">
+                <button id="logout" class="btn btn-success me-2">
+                  Register
+                </button>
+                <button id="logout" class="btn btn-outline-success">
+                  Login
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <script src="js/script.js"></script>
+  </body>
+</html>

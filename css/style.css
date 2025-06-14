@@ -1,0 +1,17 @@
+body {
+  background-color: #ebeff5;
+}
+/* posts */
+.card {
+  border: none;
+}
+.smallProfilePic {
+  width: 50px;
+  height: 50px;
+}
+#logoutBox {
+  display: none;
+}
+#addPostBtn {
+  display: none;
+}
