@@ -27,7 +27,11 @@ function displayPosts(data) {
           <div class="card col-lg-6 col-md-8 shadow">
             <div class="card-header d-flex align-items-center">
               <img
-                src="${post.author.profile_image}"
+                src="${
+                  typeof post.author.profile_image == "string"
+                    ? post.author.profile_image
+                    : "../images/face.jpg"
+                }"
                 alt="profile pic"
                 class="img-thumbnail rounded-circle border me-2 smallProfilePic"
               />
@@ -37,7 +41,9 @@ function displayPosts(data) {
               </div>
             </div>
             <div class="card-body">
-              <img src="${post.image}" alt="" class="w-100" height="300" />
+              <img src="${
+                post.image
+              }" alt="" class="w-100" style="max-height:300px" />
               <p class="text-secondary mb-1">${post.created_at}</p>
               <h5 class="card-title">${post.title}</h5>
               <p class="card-text">
@@ -45,7 +51,9 @@ function displayPosts(data) {
               </p>
             </div>
             <div class="card-footer text-body-secondary">
-              <i class="fa-solid fa-comment"></i> (<span>${post.comments_count}</span>) Comments
+              <i class="fa-solid fa-comment"></i> (<span>${
+                post.comments_count
+              }</span>) Comments
             </div>
           </div>
         </div>

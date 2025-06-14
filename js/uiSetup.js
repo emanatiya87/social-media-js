@@ -12,7 +12,11 @@ function setupUI() {
     logoutBox.style.display = "flex";
     logoutBoxBody.innerHTML = `
                 <img
-                  src="${data.profile_image}"
+                  src="${
+                    typeof data.profile_image == "string"
+                      ? data.profile_image
+                      : "../images/face.jpg"
+                  }"
                   class=" rounded-circle border smallProfilePic"
                   alt="profile pic"
                  
@@ -21,7 +25,11 @@ function setupUI() {
 `;
     addPostCardUserData.innerHTML = `
               <img
-                src="${data.profile_image}"
+                src="${
+                  typeof data.profile_image == "string"
+                    ? data.profile_image
+                    : "../images/face.jpg"
+                }"
                 alt="prodile Pic"
                 class="smallProfilePic rounded-circle border"
               />
