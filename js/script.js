@@ -3,26 +3,33 @@ let addPostForm = document.getElementById("addPostForm");
 let inputPostTitle = document.getElementById("inputPostTitle");
 let inputPostBody = document.getElementById("inputPostBody");
 let inputPostImg = document.getElementById("inputPostImg");
+let currentPage = 1;
+let last_page = 1;
 import { setupUI } from "./uiSetup.js";
 import { showAlert } from "./alert.js";
 // to setup UI at start relative to exist user or not
 setupUI();
-getPosts();
+getPosts(currentPage, true);
 // fetch posts from API
-function getPosts() {
+function getPosts(pageNum, reload) {
   axios
-    .get(`https://tarmeezacademy.com/api/v1/posts?limit=20`)
+    .get(`https://tarmeezacademy.com/api/v1/posts?limit=4&page=${pageNum}`)
     .then((data) => {
-      displayPosts(data.data.data);
+      last_page = data.data.meta.last_page;
+      currentPage = data.data.meta.current_page;
+      displayPosts(data.data.data, reload);
     })
     .catch((error) => console.error(error));
 }
 
 //   function to display data of posts in cards
-function displayPosts(data) {
-  let innerPostText = "";
+function displayPosts(data, reload) {
+  if (reload) {
+    postsContainer.innerHTML = "";
+  }
+
   data.forEach((post) => {
-    innerPostText += `
+    let innerPostText = `
         <div class="row mb-3 justify-content-center">
           <div class="card col-lg-6 col-md-8 shadow">
             <div class="card-header d-flex align-items-center">
@@ -58,8 +65,8 @@ function displayPosts(data) {
           </div>
         </div>
     `;
+    postsContainer.innerHTML += innerPostText;
   });
-  postsContainer.innerHTML = innerPostText;
 }
 // user add post
 addPostForm.onsubmit = function (e) {
@@ -84,4 +91,13 @@ addPostForm.onsubmit = function (e) {
       console.log(error);
       showAlert(error.response.data.message, "danger");
     });
+};
+// Pagination
+window.onscroll = function () {
+  let endPage =
+    window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
+  if (endPage && currentPage < last_page) {
+    currentPage++;
+    getPosts(currentPage, false);
+  }
 };
