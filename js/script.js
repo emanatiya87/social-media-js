@@ -44,7 +44,7 @@ function displayPosts(data, reload) {
               />
               <div>
                 <h5 class="m-0">${post.author.name}</h5>
-                <p class="text-secondary m-0">@${post.author.username}</h5>
+                <p class="text-secondary m-0">@${post.author.username}</p>
               </div>
             </div>
             <div class="card-body">
@@ -57,7 +57,8 @@ function displayPosts(data, reload) {
                 ${post.body}
               </p>
             </div>
-            <div class="card-footer text-body-secondary">
+            <div class="card-footer text-body-secondary" 
+              onclick="appearComments(${post.id})">
               <i class="fa-solid fa-comment"></i> (<span>${
                 post.comments_count
               }</span>) Comments
@@ -100,4 +101,9 @@ window.onscroll = function () {
     currentPage++;
     getPosts(currentPage, false);
   }
+};
+// appear comments
+window.appearComments = function (id) {
+  localStorage.setItem("postId", id);
+  window.location.href = "postDetails.html";
 };
