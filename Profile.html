@@ -16,7 +16,7 @@
   </head>
   <body>
     <!-- header -->
-    <header class="container-fluid mb-4">
+    <header class="container-fluid">
       <div class="row">
         <nav
           class="navbar navbar-expand-md bg-light shadow rounded-bottom-5 p-2"
@@ -88,8 +88,23 @@
         </nav>
       </div>
     </header>
+    <div class="container-fluid cover">
+      <img src="images/cover.jpg" alt="" class="w-100 h-100" />
+    </div>
+    <main class="translate-middle-y">
+      <div class="container">
+        <div class="row">
+          <div
+            class="d-flex flex-wrap align-items-center col justify-content-md-start justify-content-center flex-column flex-sm-row"
+            id="userProfileInfo"
+          >
+            <!-- from API -->
+          </div>
+        </div>
+      </div>
+    </main>
     <!-- add post section (what's on your mind?) -->
-    <article>
+    <article class="profileAddPostBox">
       <div class="container" id="addPostBtn">
         <div class="row mb-4 justify-content-center">
           <div class="col-lg-6 col-md-8 card shadow p-3">
@@ -334,7 +349,7 @@
     ></div>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/addpost.js" type="module"></script>
-    <script src="js/profileScript.js"></script>
+    <script src="js/profileScript.js" type="module"></script>
     <script src="js/registraionProsses.js" type="module"></script>
     <script src="js/uiSetup.js" type="module"></script>
   </body>

@@ -1,10 +1,11 @@
 let profilePostsContainer = document.getElementById("profilePostsContainer");
-let authorId = JSON.parse(localStorage.getItem("currentUserData")).id;
+let currentUserData = JSON.parse(localStorage.getItem("currentUserData"));
+let userProfileInfo = document.getElementById("userProfileInfo");
 getPosts();
 // fetch posts from API
 function getPosts() {
   axios
-    .get(`https://tarmeezacademy.com/api/v1/users/${authorId}/posts`)
+    .get(`https://tarmeezacademy.com/api/v1/users/${currentUserData.id}/posts`)
     .then((data) => {
       console.log(data.data.data);
       displayPosts(data.data.data);
@@ -30,7 +31,7 @@ function displayPosts(data) {
                 class="img-thumbnail rounded-circle border me-2 smallProfilePic"
               />
               <div>
-                <h5 class="m-0">${post.author.name}</h5>
+                <h5 class="m-0 text-capitalize">${post.author.name}</h5>
                 <p class="text-secondary m-0">@${post.author.username}</p>
               </div>
             </div>
@@ -56,3 +57,23 @@ function displayPosts(data) {
     profilePostsContainer.innerHTML += innerPostText;
   });
 }
+// profile data
+function appearProfileData() {
+  userProfileInfo.innerHTML = `
+<img
+              src="${
+                typeof currentUserData.profile_image == "string"
+                  ? currentUserData.profile_image
+                  : "images/face.jpg"
+              }"
+              alt="profile pic"
+              class="rounded-circle me-2 profilePic"
+            />
+            <div>
+              <h2 class="m-0 text-uppercase">${currentUserData.name}</h2>
+              <p class="text-secondary m-0">@${currentUserData.username}</p>
+            </div>
+`;
+}
+appearProfileData();
+export { getPosts, appearProfileData };

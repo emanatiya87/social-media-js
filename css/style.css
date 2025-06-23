@@ -25,3 +25,15 @@ body {
 .card-footer {
   cursor: pointer;
 }
+/* profile */
+.cover {
+  height: 35vh;
+}
+.profileAddPostBox {
+  margin-top: -90px;
+}
+.profilePic {
+  width: 250px;
+  height: 250px;
+  border: 7px solid #ebeff5;
+}
