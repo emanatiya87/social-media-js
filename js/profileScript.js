@@ -3,7 +3,12 @@ let currentUserData = JSON.parse(localStorage.getItem("currentUserData"));
 let userProfileInfo = document.getElementById("userProfileInfo");
 let token = JSON.parse(localStorage.getItem("token"));
 let deletePostBtn = document.getElementById("deletePostBtn");
+let editPostForm = document.getElementById("editPostForm");
+let inputPostTitle = document.getElementById("PostTitleEdited");
+let inputPostBody = document.getElementById("PostBodyEdited");
 let selectedPostId = null;
+let selectedPostTitle = null;
+let selectedPostBody = null;
 import { showAlert } from "./alert.js";
 getPosts();
 // fetch posts from API
@@ -43,10 +48,13 @@ function displayPosts(data) {
                  <!-- Three Dots Dropdown -->
               <div class="dropdown text-end">
                 <button
-                  class="btn"
+                  class="btn dropdownDotes"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
+                  data-id="${post.id}"
+                  data-title="${post.title}"
+                  data-body="${post.body}"
                 >
                   <i class="fa-solid fa-ellipsis-vertical"></i>
                 </button>
@@ -54,10 +62,9 @@ function displayPosts(data) {
                   <li class="dropdown-item " data-bs-toggle="modal" data-bs-target="#editPostModal">
                   Edit</li>
                 <li
-                  class="dropdown-item deleteBtn text-danger"
+                  class="dropdown-item  text-danger"
                   data-bs-toggle="modal"
-                  data-bs-target="#deletePostModal"
-                  data-id="${post.id}">
+                  data-bs-target="#deletePostModal">
                   Delete
                 </li> 
                 </ul>
@@ -83,9 +90,11 @@ function displayPosts(data) {
         </div>
     `;
     profilePostsContainer.innerHTML += innerPostText;
-    document.querySelectorAll(".deleteBtn").forEach((ele) => {
+    document.querySelectorAll(".dropdownDotes").forEach((ele) => {
       ele.onclick = function () {
         selectedPostId = ele.dataset.id;
+        inputPostBody.value = ele.dataset.body;
+        inputPostTitle.value = ele.dataset.title;
       };
     });
   });
@@ -126,8 +135,37 @@ function deletePost(id) {
       showAlert("error deleting the post", "danger");
     });
 }
+// confirm deleting
 deletePostBtn.onclick = function () {
   deletePost(selectedPostId);
   selectedPostId = null;
+};
+// edit post
+function editPost(id) {
+  axios
+    .put(
+      `https://tarmeezacademy.com/api/v1/posts/${id}`,
+      {
+        body: inputPostBody.value,
+        title: inputPostTitle.value,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+    .then((res) => {
+      showAlert("Post edited successfully", "success");
+      getPosts();
+    })
+    .catch((error) => {
+      console.log(error);
+      showAlert("error deleting the post", "danger");
+    });
+}
+editPostForm.onsubmit = function (e) {
+  e.preventDefault();
+  editPost(selectedPostId);
 };
 export { getPosts, appearProfileData };
