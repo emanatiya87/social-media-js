@@ -1,6 +1,10 @@
 let profilePostsContainer = document.getElementById("profilePostsContainer");
 let currentUserData = JSON.parse(localStorage.getItem("currentUserData"));
 let userProfileInfo = document.getElementById("userProfileInfo");
+let token = JSON.parse(localStorage.getItem("token"));
+let deletePostBtn = document.getElementById("deletePostBtn");
+let selectedPostId = null;
+import { showAlert } from "./alert.js";
 getPosts();
 // fetch posts from API
 function getPosts() {
@@ -20,7 +24,8 @@ function displayPosts(data) {
     let innerPostText = `
         <div class="row mb-3 justify-content-center">
           <div class="card col-lg-6 col-md-8 shadow">
-            <div class="card-header d-flex align-items-center">
+            <div class="card-header d-flex align-items-center justify-content-between">
+             <div class=" d-flex">
               <img
                 src="${
                   typeof post.author.profile_image == "string"
@@ -33,6 +38,29 @@ function displayPosts(data) {
               <div>
                 <h5 class="m-0 text-capitalize">${post.author.name}</h5>
                 <p class="text-secondary m-0">@${post.author.username}</p>
+              </div>
+             </div>
+                 <!-- Three Dots Dropdown -->
+              <div class="dropdown text-end">
+                <button
+                  class="btn"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="fa-solid fa-ellipsis-vertical"></i>
+                </button>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item " data-bs-toggle="modal" data-bs-target="#editPostModal">
+                  Edit</li>
+                <li
+                  class="dropdown-item deleteBtn text-danger"
+                  data-bs-toggle="modal"
+                  data-bs-target="#deletePostModal"
+                  data-id="${post.id}">
+                  Delete
+                </li> 
+                </ul>
               </div>
             </div>
             <div class="card-body">
@@ -55,6 +83,11 @@ function displayPosts(data) {
         </div>
     `;
     profilePostsContainer.innerHTML += innerPostText;
+    document.querySelectorAll(".deleteBtn").forEach((ele) => {
+      ele.onclick = function () {
+        selectedPostId = ele.dataset.id;
+      };
+    });
   });
 }
 // profile data
@@ -76,4 +109,25 @@ function appearProfileData() {
 `;
 }
 appearProfileData();
+// delete Post
+function deletePost(id) {
+  axios
+    .delete(`https://tarmeezacademy.com/api/v1/posts/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => {
+      showAlert("Post deleted successfully", "success");
+      getPosts();
+    })
+    .catch((error) => {
+      console.log(error);
+      showAlert("error deleting the post", "danger");
+    });
+}
+deletePostBtn.onclick = function () {
+  deletePost(selectedPostId);
+  selectedPostId = null;
+};
 export { getPosts, appearProfileData };

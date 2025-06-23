@@ -3,3 +3,5 @@
 if img not fount .... !!
  instead of + btn , n3l box what is on your mind zay el facebook
  loadin page zy el face book shkl elpostst bs gray 
+ in profile postst last 1 first
+ asbt function wahda to diaplay posts in profil and home wit parameter container
