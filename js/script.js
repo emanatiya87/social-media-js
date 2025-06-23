@@ -18,7 +18,6 @@ function getPosts(pageNum, reload) {
     })
     .catch((error) => console.error(error));
 }
-
 //   function to display data of posts in cards
 function displayPosts(data, reload) {
   if (reload) {
@@ -29,7 +28,8 @@ function displayPosts(data, reload) {
     let innerPostText = `
         <div class="row mb-3 justify-content-center">
           <div class="card col-lg-6 col-md-8 shadow">
-            <div class="card-header d-flex align-items-center">
+            <div class="card-header d-flex align-items-center" 
+            data-id=${post.author.id}>
               <img
                 src="${
                   typeof post.author.profile_image == "string"
@@ -64,6 +64,12 @@ function displayPosts(data, reload) {
         </div>
     `;
     postsContainer.innerHTML += innerPostText;
+    document.querySelectorAll(".card-header").forEach((ele) => {
+      ele.onclick = function () {
+        localStorage.setItem("visitedUserId", ele.dataset.id);
+        window.location.href = "generalProfile.html";
+      };
+    });
   });
 }
 

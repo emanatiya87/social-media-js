@@ -7,8 +7,6 @@ let editPostForm = document.getElementById("editPostForm");
 let inputPostTitle = document.getElementById("PostTitleEdited");
 let inputPostBody = document.getElementById("PostBodyEdited");
 let selectedPostId = null;
-let selectedPostTitle = null;
-let selectedPostBody = null;
 import { showAlert } from "./alert.js";
 getPosts();
 // fetch posts from API
@@ -17,13 +15,13 @@ function getPosts() {
     .get(`https://tarmeezacademy.com/api/v1/users/${currentUserData.id}/posts`)
     .then((data) => {
       console.log(data.data.data);
-      displayPosts(data.data.data);
+      displayPostsProfile(data.data.data);
     })
     .catch((error) => console.error(error));
 }
 
 //   function to display data of posts in cards
-function displayPosts(data) {
+function displayPostsProfile(data) {
   profilePostsContainer.innerHTML = "";
   data.forEach((post) => {
     let innerPostText = `
