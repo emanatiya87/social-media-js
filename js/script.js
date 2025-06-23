@@ -54,7 +54,7 @@ function displayPosts(data, reload) {
                 ${post.body}
               </p>
             </div>
-            <div class="card-footer text-body-secondary" 
+            <div class="card-footer text-body-secondary " 
               onclick="appearComments(${post.id})">
               <i class="fa-solid fa-comment"></i> (<span>${
                 post.comments_count
