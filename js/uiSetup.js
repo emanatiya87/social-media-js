@@ -49,4 +49,5 @@ function setupUI() {
     addPostBtn.style.display = "none";
   }
 }
+setupUI();
 export { setupUI };
