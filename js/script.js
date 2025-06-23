@@ -1,8 +1,5 @@
 let postsContainer = document.getElementById("postsContainer");
-let addPostForm = document.getElementById("addPostForm");
-let inputPostTitle = document.getElementById("inputPostTitle");
-let inputPostBody = document.getElementById("inputPostBody");
-let inputPostImg = document.getElementById("inputPostImg");
+
 let currentPage = 1;
 let last_page = 1;
 import { setupUI } from "./uiSetup.js";
@@ -69,30 +66,7 @@ function displayPosts(data, reload) {
     postsContainer.innerHTML += innerPostText;
   });
 }
-// user add post
-addPostForm.onsubmit = function (e) {
-  e.preventDefault();
-  let token = JSON.parse(localStorage.getItem("token"));
-  let formData = new FormData();
-  formData.append("title", inputPostTitle.value);
-  formData.append("body", inputPostBody.value);
-  formData.append("image", inputPostImg.files[0]);
-  axios
-    .post(`https://tarmeezacademy.com/api/v1/posts`, formData, {
-      headers: {
-        Accept: "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((res) => {
-      showAlert("post added successfully", "success");
-      getPosts();
-    })
-    .catch((error) => {
-      console.log(error);
-      showAlert(error.response.data.message, "danger");
-    });
-};
+
 // Pagination
 window.onscroll = function () {
   let endPage =
@@ -107,3 +81,4 @@ window.appearComments = function (id) {
   localStorage.setItem("postId", id);
   window.location.href = "postDetails.html";
 };
+export { getPosts };
