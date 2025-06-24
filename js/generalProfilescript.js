@@ -1,9 +1,9 @@
 let profilePostsContainer = document.getElementById("profilePostsContainer");
 let visitedUserId = JSON.parse(localStorage.getItem("visitedUserId"));
 let userProfileInfo = document.getElementById("userProfileInfo");
-getPosts();
+getVisitedProfilePosts();
 // fetch posts from API
-function getPosts() {
+function getVisitedProfilePosts() {
   axios
     .get(`https://tarmeezacademy.com/api/v1/users/${visitedUserId}/posts`)
     .then((data) => {
