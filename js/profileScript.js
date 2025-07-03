@@ -8,9 +8,15 @@ let inputPostTitle = document.getElementById("PostTitleEdited");
 let inputPostBody = document.getElementById("PostBodyEdited");
 let selectedPostId = null;
 import { showAlert } from "./alert.js";
-getPosts();
+window.addEventListener("DOMContentLoaded", function () {
+  if (document.getElementById("profilePostsContainer")) {
+    getProfilePosts();
+    appearProfileData();
+  }
+});
+
 // fetch posts from API
-function getPosts() {
+function getProfilePosts() {
   axios
     .get(`https://tarmeezacademy.com/api/v1/users/${currentUserData.id}/posts`)
     .then((data) => {
@@ -115,7 +121,7 @@ function appearProfileData() {
             </div>
 `;
 }
-appearProfileData();
+
 // delete Post
 function deletePost(id) {
   axios
@@ -126,7 +132,7 @@ function deletePost(id) {
     })
     .then((res) => {
       showAlert("Post deleted successfully", "success");
-      getPosts();
+      getProfilePosts();
     })
     .catch((error) => {
       console.log(error);
@@ -155,7 +161,7 @@ function editPost(id) {
     )
     .then((res) => {
       showAlert("Post edited successfully", "success");
-      getPosts();
+      getProfilePosts();
     })
     .catch((error) => {
       console.log(error);
@@ -166,4 +172,4 @@ editPostForm.onsubmit = function (e) {
   e.preventDefault();
   editPost(selectedPostId);
 };
-export { getPosts, appearProfileData };
+export { getProfilePosts, appearProfileData };

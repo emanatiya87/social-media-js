@@ -60,7 +60,7 @@ function displayPostsProfile(data) {
   });
 }
 // profile data
-function appearProfileData() {
+function appearVisitedProfileData() {
   axios
     .get(`https://tarmeezacademy.com/api/v1/users/${visitedUserId}`)
     .then((data) => {
@@ -84,4 +84,4 @@ function appearProfileData() {
     })
     .catch((error) => console.error(error));
 }
-appearProfileData();
+appearVisitedProfileData();
