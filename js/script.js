@@ -78,7 +78,7 @@ function displayPosts(data, reload) {
 // Pagination
 window.onscroll = function () {
   let endPage =
-    window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
+    window.innerHeight + window.pageYOffset >= document.body.scrollHeight;
   if (endPage && currentPage < last_page) {
     currentPage++;
     getPosts(currentPage, false);
