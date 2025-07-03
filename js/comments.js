@@ -82,7 +82,8 @@ function displayComments(comments, reload) {
 function displayPost(post) {
   postContainer.innerHTML = `
          <div class="card col-lg-6 col-md-8 shadow rounded-bottom-0">
-            <div class="card-header d-flex align-items-center">
+            <div class="card-header d-flex align-items-center justify-content-between">
+            <div class=" d-flex align-items-center">
               <img
                 src="${
                   typeof post.author.profile_image == "string"
@@ -97,13 +98,15 @@ function displayPost(post) {
                 <p class="text-secondary m-0">@${post.author.username}</p>
               </div>
             </div>
+              <p class="text-secondary mb-1">${post.created_at}</p>
+
+            </div>
             <div class="card-body">
+             <h5 class="card-title">${post.title}</h5>
+              <p class="card-text">${post.body}</p>
               <img src="${
                 post.image
               }" alt="" class="w-100" style="max-height: 300px" />
-              <p class="text-secondary mb-1">${post.created_at}</p>
-              <h5 class="card-title">${post.title}</h5>
-              <p class="card-text">${post.body}</p>
             </div>
             <div class="card-footer text-body-secondary">
               <i class="fa-solid fa-comment"></i> (<span

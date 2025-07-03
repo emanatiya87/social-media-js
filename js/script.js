@@ -28,8 +28,9 @@ function displayPosts(data, reload) {
     let innerPostText = `
         <div class="row mb-3 justify-content-center">
           <div class="card col-lg-6 col-md-8 shadow">
-            <div class="card-header d-flex align-items-center" 
+            <div class="card-header d-flex align-items-center justify-content-between" 
             data-id=${post.author.id}>
+             <div class=" d-flex align-items-center">
               <img
                 src="${
                   typeof post.author.profile_image == "string"
@@ -43,16 +44,17 @@ function displayPosts(data, reload) {
                 <h5 class="m-0">${post.author.name}</h5>
                 <p class="text-secondary m-0">@${post.author.username}</p>
               </div>
+             </div>
+              <p class="text-secondary mb-1">${post.created_at}</p>
             </div>
             <div class="card-body">
-              <img src="${
-                post.image
-              }" alt="" class="w-100" style="max-height:300px" />
-              <p class="text-secondary mb-1">${post.created_at}</p>
               <h5 class="card-title">${post.title}</h5>
               <p class="card-text">
                 ${post.body}
               </p>
+              <img src="${
+                post.image
+              }" alt="" class="w-100" style="max-height:300px" />
             </div>
             <div class="card-footer text-body-secondary " 
               onclick="appearComments(${post.id})">

@@ -75,14 +75,14 @@ function displayPostsProfile(data) {
               </div>
             </div>
             <div class="card-body">
+            <h5 class="card-title">${post.title}</h5>
+              <p class="card-text">
+                ${post.body}
+              </p>
               <img src="${
                 post.image
               }" alt="" class="w-100" style="max-height:300px" />
               <p class="text-secondary mb-1">${post.created_at}</p>
-              <h5 class="card-title">${post.title}</h5>
-              <p class="card-text">
-                ${post.body}
-              </p>
             </div>
             <div class="card-footer text-body-secondary " 
               onclick="appearComments(${post.id})">
