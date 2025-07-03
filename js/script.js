@@ -89,4 +89,10 @@ window.appearComments = function (id) {
   localStorage.setItem("postId", id);
   window.location.href = "postDetails.html";
 };
+// loader
+window.onload = function () {
+  setTimeout(function () {
+    document.getElementById("loader").style.display = "none";
+  }, 1000);
+};
 export { getPosts };

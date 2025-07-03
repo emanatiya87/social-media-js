@@ -41,3 +41,7 @@ body {
   height: 250px;
   border: 7px solid #ebeff5;
 }
+/* loader */
+#loader {
+  display: flex;
+}
